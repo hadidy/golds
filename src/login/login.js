@@ -6,7 +6,8 @@ import {
     TextInput,
     ImageBackground,
     TouchableOpacity,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 import { styles } from './login-style';
 export default class Login extends Component {
@@ -17,31 +18,34 @@ export default class Login extends Component {
     }
     render() {
         return (
-        <ImageBackground  style={styles.backgroundImage} source={require('../../assets/images/shutterstock.jpg')}>
-            <View style={styles.loginContainer}>
-                <Image  style={styles.logo} source={require('../../assets/images/logo.png')}/>
-                <View style={styles.textInputsContainer}>
-                    <TextInput
-                        underlineColorAndroid='transparent'
-                        style={styles.textInputStyle}
-                        onChangeText={(text) => this.setState({ username })}
-                        value={this.state.username}
-                        placeholder='Username'
-                    />
-                    <TextInput
-                        underlineColorAndroid='transparent'
-                        style={styles.textInputStyle}
-                        onChangeText={(text) => this.setState({ password })}
-                        value={this.state.password}
-                        placeholder='Password'
-                    />
-
+            <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/shutterstock.jpg')}>
+                <View style={styles.loginContainer}>
+                    <ScrollView>
+                        <Image style={styles.logo} source={require('../../assets/images/logo.png')} />
+                        <View style={styles.textInputsContainer}>
+                            <TextInput
+                                underlineColorAndroid='transparent'
+                                placeholderTextColor="#fff" 
+                                style={styles.textInputStyle}
+                                onChangeText={(username) => this.setState({ username })}
+                                value={this.state.username}
+                                placeholder='Username'
+                            />
+                            <TextInput
+                                underlineColorAndroid='transparent'
+                                placeholderTextColor="#fff" 
+                                style={styles.textInputStyle}
+                                onChangeText={(password) => this.setState({ password })}
+                                value={this.state.password}
+                                placeholder='Password'
+                            />
+                        </View>
+                        <TouchableOpacity onPress={console.log('button clicked')} style={styles.button}>
+                            <Text style={styles.buttonText}>Login</Text>
+                        </TouchableOpacity>
+                    </ScrollView>
                 </View>
-                <TouchableOpacity onPress={alert('login')} style={styles.button}>
-                <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
-            </View>
-        </ImageBackground>
+            </ImageBackground>
         );
     }
 }

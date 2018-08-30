@@ -11,6 +11,9 @@ export const styles = StyleSheet.create({
       marginBottom:30,
       marginLeft:30,
       marginRight:30,
+      paddingLeft:20,
+      paddingRight:20,
+      color:'#fff'
     },
     textInputsContainer:{
         marginTop:50
