@@ -7,46 +7,47 @@
 import React, { Component } from 'react';
 import {
     Platform,
-    StyleSheet,
     Text,
-    View
+    View,
+    Image,
+    ScrollView,
+    TouchableWithoutFeedback
 } from 'react-native';
+import {styles} from './detail-style'
 
 export default class Detail extends Component {
+    constructor(props) {
+        super(props)
+        this.data=[{title:'Fit',image:require('../../assets/images/fit.jpg'),coachName:'ali',time:'5:30'},{title:'Fit',image:require('../../assets/images/fit1.jpg'),coachName:'ahmed',time:'7:30'}]
+    }
     rederProgamDetails() {
-        return this.props.timeLine.program.map((item) => {
+        return this.data.map((item,index) => {
             return (
-                <View style={{ flexDirection: 'column' , justifyContent: 'space-evenly' , flex:4 }} >
-                    <Text>{item}</Text>
+                <View key={index} style={styles.cardStyle}>
+                    <Image style={styles.imageStyle} source={item.image}></Image>
+                    <View style={styles.details}>
+
+                    <Text style={styles.detailsTitle}>{item.title}</Text>
+                    <Text>{item.coachName}</Text>
+                    <Text>{item.time}</Text>
+                    <TouchableWithoutFeedback onPress={()=>console.log('Reserve')}>
+                        <View style={styles.buttonStyle}>
+                            <Text style={styles.buttonText}>Reserve</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                    </View>
                 </View>
             )
         })
     }
     render() {
         return (
-            <View style={styles.container}>
-                <View style={{ flex: 1 }}>
-                    <Text style={{ flex: 1, fontWeight: 'Bold' }}>{this.props.timeLine.couch}</Text>
-                    <Text style={{ flex: 1, fontWeight: 'normal' }}>{this.props.timeLine.time}{this.props.timeLine.type}</Text>
+            <ScrollView style={styles.containers}>
                     {this.rederProgamDetails()}
-                </View>
-                <View style={{ flex: 1 }}>
-
-                </View>
-
-            </View>
+            </ScrollView>
 
         )
 
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-
-    }
-});
